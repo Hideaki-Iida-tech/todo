@@ -76,13 +76,14 @@
             @foreach($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
-                    <form action="/todos/update" class="update-form" method="POST">
+                    <form action="/todos/{{$todo['id']}}" class="update-form" method="POST">
                         @method('PATCH')
                         @csrf
                         <div class="update-form__item">
 
                             <input type="text" class="update-form__item-input" name="content" value="{{ $todo['content'] }}" />
                             <input type="hidden" name="id" value="{{ $todo['id'] }}" />
+                            <input type="hidden" name="category_id" value="{{ $todo['category_id'] }}">
                         </div>
                         <div class="update-form__item">
                             <p class="update-form__item-p">
@@ -97,7 +98,7 @@
                     </form>
                 </td>
                 <td class="todo-table__item">
-                    <form action="/todos/delete" class="delete-form" method="POST">
+                    <form action="/todos/{{$todo['id']}}" class="delete-form" method="POST">
                         @method('DELETE')
                         @csrf
                         <input type="hidden" name="id" value="{{ $todo['id'] }}" />

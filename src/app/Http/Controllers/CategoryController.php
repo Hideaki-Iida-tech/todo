@@ -23,12 +23,12 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request)
     {
         $category = $request->only(['name']);
-        Category::find($request->id)->update($category);
+        Category::find($request->category_id)->update($category);
         return redirect('/categories')->with('message', 'カテゴリを更新しました');
     }
     public function destroy(Request $request)
     {
-        Category::find($request->id)->delete();
+        Category::find($request->category_id)->delete();
         return redirect('/categories')->with('message', 'カテゴリを削除しました');
     }
 }
